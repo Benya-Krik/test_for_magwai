@@ -26,6 +26,9 @@
 
 body {
     background-color: #131313;
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 .container {

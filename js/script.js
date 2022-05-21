@@ -8,32 +8,28 @@ const intro = document.querySelector('.intro')
 
 // swipe methods for slider
 
-intro.addEventListener('touchstart', handleTouchStart, false)
-intro.addEventListener('touchmove', handleTouchMove, false)
+intro.addEventListener('touchstart', onTouch, false)
 
-let x1 = null;
-let y1 = null;
+function onTouch(event) {
 
-function handleTouchStart(event) {
-  const firstTouch = event.touches[0];
-  x1 = firstTouch.clientX;
-  y1 = firstTouch.clientY;
-}
+  intro.addEventListener('touchend', onTouchEnd, false)
+  let firstTouch = event.touches[0].clientX;
 
-function handleTouchMove(event) {
-  if (!x1 || !y1) {
-    return false;
+
+  function onTouchEnd (event) {
+
+    const lastTouch = event.changedTouches[0].clientX
+    intro.removeEventListener('touchend', onTouchEnd, false)
+
+    if(firstTouch > lastTouch+100) {
+      plusSlide()
+      return
+    } else if (firstTouch+100< lastTouch){
+      minusSlide()
+      return
+    }
   }
-  let x2 = event.touches[0].clientX;
-  let y2 = event.touches[0].clientY;
 
-  let xDiff = x2 - x1;
-  let yDiff = y2 - y1;
-
-  if (Math.abs(xDiff)> Math.abs(yDiff)) {
-    if(xDiff > 0) minusSlide()
-    else plusSlide()
-  }
 }
 
 // drag methods for slider

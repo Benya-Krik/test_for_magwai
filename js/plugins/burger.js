@@ -9,6 +9,7 @@ $.burger = function() {
             const icon = document.querySelector('.header__burger');
             icon.classList.toggle('active');
             burgerMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
             setTimeout(()=> burgerMenu.classList.toggle('animate'), 1);
         }
     }
