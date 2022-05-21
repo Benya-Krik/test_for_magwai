@@ -21,10 +21,10 @@ function onTouch(event) {
     const lastTouch = event.changedTouches[0].clientX
     intro.removeEventListener('touchend', onTouchEnd, false)
 
-    if(firstTouch > lastTouch+100) {
+    if(firstTouch > lastTouch+50) {
       plusSlide()
       return
-    } else if (firstTouch+100< lastTouch){
+    } else if (firstTouch+50< lastTouch){
       minusSlide()
       return
     }
